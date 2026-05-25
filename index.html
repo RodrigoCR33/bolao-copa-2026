@@ -296,6 +296,7 @@
             dados.forEach((valor, chave) => {
                 objeto[chave] = valor;
             });
+            console.log('dados')
             try {
                 const resposta = await fetch("https://script.google.com/macros/s/AKfycby0B4EhxW1MRAagFFl6kPLCjpuABbqgzagOsJQN_EaX7NU8JE1xL0MQ4TSXeyEdL1Ct/exec", {
                     method: "POST",
