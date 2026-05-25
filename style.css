@@ -1,0 +1,231 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+body {
+    font-family: Arial, sans-serif;
+    #2471a3; /* Azul um pouco mais escuro */
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Sugestão Gemini: */
+
+/* --- CONFIGURAÇÃO DO CONTAINER PRINCIPAL --- */
+.container {
+    width: 100%;
+    max-width: 500px; /* Mantém o alinhamento perfeito com os cards e caixas dos grupos */
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* --- ESTILIZAÇÃO DO CABEÇALHO --- */
+.cabecalho-principal {
+    text-align: center;
+    margin: 30px auto 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Título Principal com Gradiente Moderno */
+.cabecalho-principal h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    
+    /* Cria o efeito de texto colorido em degradê azul/verde esporte */
+    background: linear-gradient(135deg, #1e3c72 0%, #2980b9 50%, #27ae60 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subtítulo transformado em uma Badge (Etiqueta de Destaque) */
+.subtitulo-badge {
+    display: inline-block;
+    background-color: #ebf5fb; /* Fundo azul bem clarinho */
+    color: #2980b9;            /* Texto com o azul padrão do seu botão */
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    padding: 6px 16px;
+    border-radius: 50px;       /* Formato pílula/oval super moderno */
+    border: 1px solid rgba(41, 128, 185, 0.2);
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+
+/* Fim da Sugestão Gemini: */
+
+.grupo {
+    background-color: #ffffff; /* Fundo branco para destacar */;
+    color: #2c3e50;            /* Cor do texto escura e elegante */   
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+
+    /* Espaçamentos unificados */
+    padding: 12px 20px;        /* Espaço interno para o texto respirar */
+    margin: 20px auto;         /* Margem externa centralizada */
+    
+    /* Alinhamento com os cards existentes */
+    width: 100%;               /* Ocupa a largura do mobile */
+    max-width: 500px;          /* Mantém o mesmo tamanho dos blocos de jogos */
+    box-sizing: border-box;    /* Garante que o padding não estoure a tela */
+    
+    /* Bordas e Cantos combinando com o botão azul */
+    border: 2px solid #2980b9; /* Borda sólida com o azul do botão */
+    border-radius: 8px;        /* Mesma curvatura dos cards e botões */
+    
+    /* Sombra suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+}
+
+/* --- ESTRUTURA DO CARD DE JOGO --- */
+.jogo {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    
+    /* Flexbox configurado para quebrar linhas no celular */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Data ocupa 100% da largura no topo do card */
+.data {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+/* --- SELEÇÕES E PLACARES --- */
+.time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 35%; /* Limita a largura para alinhar com o placar */
+}
+
+.time-esquerda {
+    justify-content: flex-end;
+}
+
+.time-direita {
+    justify-content: flex-start;
+}
+
+.bandeira {
+    width: 30px;
+    height: auto;
+    object-fit: contain;
+}
+
+.time span {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Corta nomes muito longos elegantemente */
+}
+
+/* --- ÁREA CENTRAL DO PLACAR --- */
+.placar {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.placar input {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Remove as setas padrão do input de número */
+.placar input::-webkit-outer-spin-button,
+.placar input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.x {
+    width: 6%;
+    text-align: center;
+    font-weight: bold;
+    color: #999;
+}
+
+/* --- DESIGN RESPONSIVO PARA CELULARES PEQUENOS --- */
+@media (max-width: 400px) {
+    .time span {
+        font-size: 12px; /* Diminui a fonte em telas muito estreitas */
+    }
+    
+    .placar input {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* --- BOTÃO DE ENVIAR PALPITES RESPONSIVO (AZUL) --- */
+.btn-enviar {
+    display: block;
+    width: 100%;             /* Ocupa toda a largura disponível */
+    max-width: 500px;        /* Mantém o mesmo tamanho dos cards dos jogos */
+    margin: 25px auto 40px;  /* Margem grande abaixo para não sumir no rodapé do celular */
+    padding: 16px 20px;      /* Área de clique alta e confortável para o dedo */
+    
+    font-size: 18px;         /* Texto grande e legível */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    color: #ffffff;
+    background-color: #2980b9; /* Azul moderno */
+    border: none;
+    border-radius: 8px;      /* Cantos suavemente arredondados */
+    
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(41, 128, 185, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse (computador) */
+.btn-enviar:hover {
+    background-color: #2471a3; /* Azul um pouco mais escuro */
+    box-shadow: 0 6px 12px rgba(36, 113, 163, 0.4);
+    transform: translateY(-2px); /* Leve flutuação */
+}
+
+/* Efeito de clique (perfeito para o toque no celular) */
+.btn-enviar:active {
+    transform: translateY(1px);  /* Dá a sensação física de botão pressionado */
+    box-shadow: 0 2px 4px rgba(36, 113, 163, 0.2);
+}
