@@ -287,30 +287,41 @@
 
     </form>
 
-    <script>
-        document.getElementById("form-bolao").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const dados = new FormData(form);
-            const objeto = {};
-            dados.forEach((valor, chave) => {
-                objeto[chave] = valor;
-            });
-            console.log('dados')
-            try {
-                const resposta = await fetch("https://script.google.com/macros/s/AKfycby0B4EhxW1MRAagFFl6kPLCjpuABbqgzagOsJQN_EaX7NU8JE1xL0MQ4TSXeyEdL1Ct/exec", {
-                    method: "POST",
-                    body: JSON.stringify(objeto)
-                });
-                const resultado = await resposta.text();
-                alert("Palpites enviados com sucesso!");
-                form.reset();
-            } catch (erro) {
-                console.error(erro);
-                alert("Erro ao enviar os palpites.");
-            }
+<script>
+    document.getElementById("form-bolao").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const dados = new FormData(form);
+
+        const objeto = {};
+
+        dados.forEach((valor, chave) => {
+            objeto[chave] = valor;
         });
-    </script>
+
+        // VER OS DADOS
+        console.log(objeto);
+
+        try {
+            const resposta = await fetch("https://script.google.com/macros/s/AKfycby0B4EhxW1MRAagFFl6kPLCjpuABbqgzagOsJQN_EaX7NU8JE1xL0MQ4TSXeyEdL1Ct/exec", {
+                method: "POST",
+                body: JSON.stringify(objeto)
+            });
+
+            const resultado = await resposta.text();
+
+            console.log(resultado);
+
+            alert("Palpites enviados com sucesso!");
+            form.reset();
+
+        } catch (erro) {
+            console.error(erro);
+            alert("Erro ao enviar os palpites.");
+        }
+    });
+</script>
 
 </div>
 
