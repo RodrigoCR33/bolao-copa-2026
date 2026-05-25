@@ -291,6 +291,23 @@
     document.getElementById("form-bolao").addEventListener("submit", async function(e) {
         e.preventDefault();
 
+        // cria loading
+        const loading = document.createElement("div");
+
+        loading.innerHTML = "⏳ Enviando...";
+        loading.style.position = "fixed";
+        loading.style.top = "50%";
+        loading.style.left = "50%";
+        loading.style.transform = "translate(-50%, -50%)";
+        loading.style.padding = "20px";
+        loading.style.background = "#000";
+        loading.style.color = "#fff";
+        loading.style.fontSize = "20px";
+        loading.style.borderRadius = "10px";
+        loading.style.zIndex = "9999";
+
+        document.body.appendChild(loading);
+
         const form = e.target;
         const dados = new FormData(form);
 
@@ -299,9 +316,6 @@
         dados.forEach((valor, chave) => {
             objeto[chave] = valor;
         });
-
-        // VER OS DADOS
-        console.log(objeto);
 
         try {
             const resposta = await fetch("https://script.google.com/macros/s/AKfycbzqs46sDtt6vKx_wvX6avYzS6KKxncq8v13DCpKi7k-_6zXqgkMFXKroc1J7saarlss/exec", {
@@ -320,8 +334,48 @@
             console.error(erro);
             alert("Erro ao enviar os palpites.");
         }
+
+        // remove loading
+        loading.remove();
     });
 </script>
+
+
+<script>
+  const form = document.getElementById('form-bolao');
+  const STORAGE_KEY = 'dadosFormulario';
+
+  // Restaurar dados ao abrir a página
+  window.addEventListener('load', () => {
+    const dadosSalvos = localStorage.getItem(STORAGE_KEY);
+
+    if (dadosSalvos) {
+      const dados = JSON.parse(dadosSalvos);
+
+      Object.keys(dados).forEach(nomeCampo => {
+        const campo = form.elements[nomeCampo];
+
+        if (campo) {
+          campo.value = dados[nomeCampo];
+        }
+      });
+    }
+  });
+
+  // Salvar automaticamente enquanto digita
+  form.addEventListener('input', () => {
+    const dados = {};
+
+    Array.from(form.elements).forEach(campo => {
+      if (campo.name) {
+        dados[campo.name] = campo.value;
+      }
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+  });
+</script>
+
 
 </div>
 
