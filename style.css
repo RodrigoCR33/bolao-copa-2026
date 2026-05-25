@@ -131,10 +131,12 @@ body {
 
 .time-esquerda {
     justify-content: flex-end;
+    margin-right: 5px;
 }
 
 .time-direita {
     justify-content: flex-start;
+    margin-left: 5px;
 }
 
 .bandeira {
