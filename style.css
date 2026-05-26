@@ -184,6 +184,11 @@ body {
     color: #999;
 }
 
+#nome-usuario {
+    width: 100%;
+    
+}
+
 /* --- DESIGN RESPONSIVO PARA CELULARES PEQUENOS --- */
 @media (max-width: 500px) {
     .time span {
