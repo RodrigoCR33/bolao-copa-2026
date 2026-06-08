@@ -4,51 +4,101 @@
   <meta charset="UTF-8">
   <title>Google Sheets CSV</title>
   <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-    }
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-    th {
-      background: #f0f0f0;
-    }
+th {
+  background: #f5f5f5;
+  position: sticky;
+  top: 0;
+}
+
+td:first-child,
+th:first-child {
+  text-align: left;
+  font-weight: bold;
+}
   </style>
 </head>
 <body>
 
   <table id="tabela"></table>
 
-  <script>
-    const csvUrl =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTddx-sssAtmbLlw_2vgu1lKW1XAc_esekjhaIG_y1BcXdSKzMq_zZCt8TIcbSVL2o9ZP3egdt4zOA/pub?gid=0&single=true&output=csv";
+<table id="tabela"></table>
 
-    fetch(csvUrl)
-      .then(response => response.text())
-      .then(csv => {
-        const linhas = csv.trim().split("\n");
-        const tabela = document.getElementById("tabela");
+<script>
+fetch("SEU_CSV_URL")
+  .then(r => r.text())
+  .then(csv => {
+    const linhas = csv.trim().split("\n");
 
-        linhas.forEach((linha, index) => {
-          const tr = document.createElement("tr");
+    // Remove cabeçalho
+    const dados = linhas.slice(1).map(linha => linha.split("\t"));
 
-          linha.split(",").forEach(celula => {
-            const el = document.createElement(
-              index === 0 ? "th" : "td"
-            );
+    const participantes = [...new Set(
+      dados.map(row => row[1])
+    )].sort();
 
-            el.textContent = celula;
-            tr.appendChild(el);
-          });
+    const jogos = [...new Set(
+      dados.map(row => row[2])
+    )];
 
-          tabela.appendChild(tr);
-        });
+    const palpites = {};
+
+    dados.forEach(row => {
+      const participante = row[1];
+      const jogo = row[2];
+      const placar = `${row[3]} x ${row[4]}`;
+
+      if (!palpites[jogo]) {
+        palpites[jogo] = {};
+      }
+
+      palpites[jogo][participante] = placar;
+    });
+
+    const tabela = document.getElementById("tabela");
+
+    // Cabeçalho
+    const thead = document.createElement("thead");
+    const trHead = document.createElement("tr");
+
+    trHead.innerHTML = `
+      <th>Jogo</th>
+      ${participantes.map(p => `<th>${p}</th>`).join("")}
+    `;
+
+    thead.appendChild(trHead);
+    tabela.appendChild(thead);
+
+    // Corpo
+    const tbody = document.createElement("tbody");
+
+    jogos.forEach(jogo => {
+      const tr = document.createElement("tr");
+
+      let html = `<td>${jogo}</td>`;
+
+      participantes.forEach(participante => {
+        html += `<td>${
+          palpites[jogo][participante] || "-"
+        }</td>`;
       });
-  </script>
+
+      tr.innerHTML = html;
+      tbody.appendChild(tr);
+    });
+
+    tabela.appendChild(tbody);
+  });
+</script>
   
 
 </body>
