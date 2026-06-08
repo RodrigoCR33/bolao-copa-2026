@@ -28,67 +28,54 @@ th:first-child {
   </style>
 </head>
 <body>
-
-  <table id="tabela"></table>
-
-<table id="tabela"></table>
+<div id="palpites"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
 <script>
-Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vSTddx-sssAtmbLlw_2vgu1lKW1XAc_esekjhaIG_y1BcXdSKzMq_zZCt8TIcbSVL2o9ZP3egdt4zOA/pub?gid=0&single=true&output=csv", {
-  download: true,
-  header: true,
-  complete: function(results) {
+Papa.parse("SUA_URL_CSV", {
+    download: true,
+    header: true,
+    complete: function(results) {
 
-    const dados = results.data.filter(r => r.Participante);
+        const dados = results.data.filter(r => r.Participante);
 
-    const participantes = [...new Set(
-      dados.map(r => r.Participante)
-    )].sort((a, b) => a.localeCompare(b));
+        const participantes = [...new Set(
+            dados.map(r => r.Participante)
+        )].sort((a,b) => a.localeCompare(b));
 
-    const jogos = [...new Set(
-      dados.map(r => r.Jogo)
-    )];
+        const container = document.getElementById("palpites");
 
-    const matriz = {};
+        participantes.forEach(nome => {
 
-    dados.forEach(r => {
-      const jogo = r.Jogo;
-      const participante = r.Participante;
+            const apostas = dados.filter(
+                r => r.Participante === nome
+            );
 
-      if (!matriz[jogo]) {
-        matriz[jogo] = {};
-      }
+            let html = `
+                <h2>${nome}</h2>
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <th>Jogo</th>
+                        <th>Palpite</th>
+                    </tr>
+            `;
 
-      matriz[jogo][participante] =
-        `${r["resultado time 1"]} x ${r["resultado time 2"]}`;
-    });
+            apostas.forEach(a => {
+                html += `
+                    <tr>
+                        <td>${a.Jogo}</td>
+                        <td>${a["resultado time 1"]} x ${a["resultado time 2"]}</td>
+                    </tr>
+                `;
+            });
 
-    const tabela = document.getElementById("tabela");
+            html += "</table><br>";
 
-    let html = "<thead><tr><th>Jogo</th>";
+            container.innerHTML += html;
+        });
 
-    participantes.forEach(p => {
-      html += `<th>${p}</th>`;
-    });
-
-    html += "</tr></thead><tbody>";
-
-    jogos.forEach(jogo => {
-      html += `<tr><td>${jogo}</td>`;
-
-      participantes.forEach(participante => {
-        html += `<td>${matriz[jogo]?.[participante] || ""}</td>`;
-      });
-
-      html += "</tr>";
-    });
-
-    html += "</tbody>";
-
-    tabela.innerHTML = html;
-  }
+    }
 });
 </script>
 
