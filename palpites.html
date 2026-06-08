@@ -35,10 +35,8 @@ th:first-child {
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
-<table id="tabela"></table>
-
 <script>
-Papa.parse("SUA_URL_CSV", {
+Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vSTddx-sssAtmbLlw_2vgu1lKW1XAc_esekjhaIG_y1BcXdSKzMq_zZCt8TIcbSVL2o9ZP3egdt4zOA/pub?gid=0&single=true&output=csv", {
   download: true,
   header: true,
   complete: function(results) {
