@@ -34,7 +34,7 @@ th:first-child {
 <table id="tabela"></table>
 
 <script>
-fetch("SEU_CSV_URL")
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSTddx-sssAtmbLlw_2vgu1lKW1XAc_esekjhaIG_y1BcXdSKzMq_zZCt8TIcbSVL2o9ZP3egdt4zOA/pub?gid=0&single=true&output=csv")
   .then(r => r.text())
   .then(csv => {
     const linhas = csv.trim().split("\n");
