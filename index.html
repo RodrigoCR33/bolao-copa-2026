@@ -608,42 +608,6 @@
         });
     </script>
 
-
-    <script>
-        const form = document.getElementById('form-bolao-preoitavas');
-        const STORAGE_KEY = 'dadosFormulario';
-
-        // Restaurar dados ao abrir a página
-        window.addEventListener('load', () => {
-            const dadosSalvos = localStorage.getItem(STORAGE_KEY);
-
-            if (dadosSalvos) {
-                const dados = JSON.parse(dadosSalvos);
-
-                Object.keys(dados).forEach(nomeCampo => {
-                    const campo = form.elements[nomeCampo];
-
-                    if (campo) {
-                        campo.value = dados[nomeCampo];
-                    }
-                });
-            }
-        });
-
-        // Salvar automaticamente enquanto digita
-        form.addEventListener('input', () => {
-            const dados = {};
-
-            Array.from(form.elements).forEach(campo => {
-                if (campo.name) {
-                    dados[campo.name] = campo.value;
-                }
-            });
-
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
-        });
-    </script>
-
 </body>
 
 </html>
