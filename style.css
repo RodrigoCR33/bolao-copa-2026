@@ -9,9 +9,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
-/* Sugestão Gemini: */
-
 /* --- CONFIGURAÇÃO DO CONTAINER PRINCIPAL --- */
 .container {
     width: 100%;
@@ -20,6 +17,99 @@ body {
     padding: 10px;
     box-sizing: border-box;
 }
+
+.grupo {
+    background-color: #ffffff; /* Fundo branco para destacar */;
+    color: #2c3e50;            /* Cor do texto escura e elegante */   
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+
+    /* Espaçamentos unificados */
+    padding: 12px 20px;        /* Espaço interno para o texto respirar */
+    margin: 20px auto;         /* Margem externa centralizada */
+    
+    /* Alinhamento com os cards existentes */
+    width: 100%;               /* Ocupa a largura do mobile */
+    max-width: 500px;          /* Mantém o mesmo tamanho dos blocos de jogos */
+    box-sizing: border-box;    /* Garante que o padding não estoure a tela */
+    
+    /* Bordas e Cantos combinando com o botão azul */
+    border: 2px solid #2980b9; /* Borda sólida com o azul do botão */
+    border-radius: 8px;        /* Mesma curvatura dos cards e botões */
+    
+    /* Sombra suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+}
+
+/* --- ESTRUTURA DO CARD DE JOGO --- */
+.jogo {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    
+    /* Flexbox configurado para quebrar linhas no celular */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Data ocupa 100% da largura no topo do card */
+.data {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+.time-esquerda {
+    justify-content: flex-end;
+    margin-right: 2px;
+}
+
+.time-direita {
+    justify-content: flex-start;
+    margin-left: 9px;
+}
+
+/* --- ÁREA CENTRAL DO PLACAR --- */
+.placar {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.placar-penaulte {
+    width: 5;
+    display: flex;
+    justify-content: center;
+}
+
+/* Sugestão Gemini: */
+
+.caixa-jogo {
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 25px; /* Espaço entre as caixas dos jogos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+
 
 /* --- ESTILIZAÇÃO DO CABEÇALHO --- */
 .cabecalho-principal {
@@ -65,61 +155,43 @@ body {
 
 
 /* Fim da Sugestão Gemini: */
+.linha-penaltis {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
 
-.grupo {
-    background-color: #ffffff; /* Fundo branco para destacar */;
-    color: #2c3e50;            /* Cor do texto escura e elegante */   
-    font-size: 24px;
+.linha-penaltis span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 500px;
-
-    /* Espaçamentos unificados */
-    padding: 12px 20px;        /* Espaço interno para o texto respirar */
-    margin: 20px auto;         /* Margem externa centralizada */
-    
-    /* Alinhamento com os cards existentes */
-    width: 100%;               /* Ocupa a largura do mobile */
-    max-width: 500px;          /* Mantém o mesmo tamanho dos blocos de jogos */
-    box-sizing: border-box;    /* Garante que o padding não estoure a tela */
-    
-    /* Bordas e Cantos combinando com o botão azul */
-    border: 2px solid #2980b9; /* Borda sólida com o azul do botão */
-    border-radius: 8px;        /* Mesma curvatura dos cards e botões */
-    
-    /* Sombra suave */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
 }
 
-/* --- ESTRUTURA DO CARD DE JOGO --- */
-.jogo {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-    
-    /* Flexbox configurado para quebrar linhas no celular */
-    display: flex;
-    flex-wrap: wrap;
+.penalti {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
-/* Data ocupa 100% da largura no topo do card */
-.data {
-    width: 100%;
-    text-align: center;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 6px;
+.penalti input {
+    margin-right: 5px;
+}
+
+
+
+
+/* Container do placar normal (faz os times ficarem alinhados lado a lado) */
+.placar-container {
+/*    width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+/*  margin-bottom: 5px; */
+    gap: 15px;
+    margin: 15px 0;
 }
 
 /* --- SELEÇÕES E PLACARES --- */
@@ -130,15 +202,89 @@ body {
     width: 35%; /* Limita a largura para alinhar com o placar */
 }
 
-.time-esquerda {
-    justify-content: flex-end;
-    margin-right: 5px;
+
+/*
+.linha-palpite {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee; /* Opcional: Cria uma linha pontilhada sutil separando o texto dos inputs */
+    /* ADICIONE ESTA LINHA: */
+
+/*    
+    margin-bottom: 15px; /* Empurra o que estiver abaixo para baixo */
+/*    font-size: 16px
+}*/
+
+/* ==========================================================================
+   4. SEÇÃO DE DESEMPATE (PÊNALTIS)
+   ========================================================================== */
+.linha-palpite {
+    background-color: #fafbfc; /* Tom sutilmente diferente para destacar o mata-mata */
+/*  padding: 12px 10px;   */
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 0.9em;
+    text-align: center;
+    border-top: 1px dashed #eee; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    
 }
 
-.time-direita {
-    justify-content: flex-start;
-    margin-left: 5px;
+/* Força o texto longo de orientação a ficar centralizado no topo da caixinha */
+/*.linha-palpite > span {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #e67e22; /* Laranja discreto para chamar atenção do usuário */
+/*    font-weight: bold;
+    margin-bottom: 12px;
+}*/
+
+/* ADICIONE ESTA NOVA REGRA ABAIXO: */
+.linha-palpite > span {
+    width: 100%;          /* Força o texto a ocupar a linha toda */
+    display: block;       /* Muda o comportamento de inline para bloco */
+    margin-bottom: 10px;  /* Cria um espaço sutil entre o texto e os inputs abaixo */
+    font-size: 12px;      /* Opcional: ajusta o tamanho da fonte */
+    color: #333;          /* Opcional: ajusta a cor do texto */
 }
+
+/* .jogo {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    
+    /* Flexbox configurado para quebrar linhas no celular */
+
+/*    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+} 
+*/
+
 
 .bandeira {
     width: 30px;
@@ -154,15 +300,12 @@ body {
     text-overflow: ellipsis; /* Corta nomes muito longos elegantemente */
 }
 
-/* --- ÁREA CENTRAL DO PLACAR --- */
-.placar {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .placar input {
-    width: 35px;
+/*    width: 35px; */
+    width: 50px;
+/*  height: 35px; */
     height: 35px;
     text-align: center;
     font-size: 16px;
