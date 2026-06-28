@@ -1,6 +1,7 @@
 /* --- CONFIGURAÇÕES GERAIS --- */
 body {
     font-family: Arial, sans-serif;
+    #2471a3; /* Azul um pouco mais escuro */
     margin: 0;
     padding: 15px;
     padding-bottom: 0px;
@@ -171,7 +172,6 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-right: 20px;
     cursor: pointer;
 }
 
@@ -339,7 +339,7 @@ body {
     }
     
     .placar input {
-        font-size: 10px;
+        font-size: 7px;
         width: 12px;
         height: 12px;
     }
